@@ -2,7 +2,7 @@ package com.gabrielwbenattidev.carwashx.modules.tenant.mapper;
 
 import org.springframework.stereotype.Component;
 
-import com.gabrielwbenattidev.carwashx.core.util.StringUtils;
+import com.gabrielwbenattidev.carwashx.common.util.StringUtils;
 import com.gabrielwbenattidev.carwashx.modules.tenant.domain.Tenant;
 import com.gabrielwbenattidev.carwashx.modules.tenant.dto.request.CreateTenantRequest;
 import com.gabrielwbenattidev.carwashx.modules.tenant.dto.response.TenantIdResponse;

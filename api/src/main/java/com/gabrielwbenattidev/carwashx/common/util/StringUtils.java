@@ -1,4 +1,4 @@
-package com.gabrielwbenattidev.carwashx.core.util;
+package com.gabrielwbenattidev.carwashx.common.util;
 
 import org.springframework.stereotype.Component;
 
