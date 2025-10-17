@@ -11,14 +11,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CreateTenantRequest {
 
+    // tenant info
     private String businessName;
 
     private String tradeName;
 
     private String taxId;
 
-    private String email;
+    private String tenantEmail;
 
-    private String phone;
+    private String tenantPhone;
+
+    // user info
+    private String username;
+
+    private String userEmail;
+
+    private String password;
+
+    private String fullName;
 
 }

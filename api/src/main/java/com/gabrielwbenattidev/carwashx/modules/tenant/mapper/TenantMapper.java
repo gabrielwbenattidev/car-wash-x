@@ -6,6 +6,8 @@ import com.gabrielwbenattidev.carwashx.core.util.StringUtils;
 import com.gabrielwbenattidev.carwashx.modules.tenant.domain.Tenant;
 import com.gabrielwbenattidev.carwashx.modules.tenant.dto.request.CreateTenantRequest;
 import com.gabrielwbenattidev.carwashx.modules.tenant.dto.response.TenantIdResponse;
+import com.gabrielwbenattidev.carwashx.modules.user.domain.User;
+import com.gabrielwbenattidev.carwashx.modules.user.domain.enums.UserRole;
 
 @Component
 public class TenantMapper {
@@ -21,10 +23,27 @@ public class TenantMapper {
         tenant.setBusinessName(request.getBusinessName());
         tenant.setTradeName(request.getTradeName());
         tenant.setTaxId(alphanumericTaxId);
-        tenant.setEmail(request.getEmail());
-        tenant.setPhone(request.getPhone());
+        tenant.setEmail(request.getTenantEmail());
+        tenant.setPhone(request.getTenantPhone());
 
         return tenant;
+    }
+
+    public User toAdminUserEntity(CreateTenantRequest request, Tenant tenant) {
+        if (request == null || tenant == null) {
+            return null;
+        }
+
+        User user = new User();
+        user.setUsername(request.getUsername());
+        user.setEmail(request.getUserEmail());
+        user.setPasswordHash(request.getPassword());
+        user.setEmail(request.getUserEmail());
+        user.setFullName(request.getFullName());
+        user.setRole(UserRole.ADMIN);
+        user.setTenant(tenant);
+
+        return user;
     }
 
     public TenantIdResponse toIdResponse(Tenant tenant) {
