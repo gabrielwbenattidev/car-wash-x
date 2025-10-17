@@ -18,12 +18,12 @@ public class TenantService {
     @Autowired
     private TenantMapper tenantMapper;
 
-    public TenantIdResponse create(CreateTenantRequest request) {
-        if (request == null) {
+    public TenantIdResponse registerTenantWithAdmin(CreateTenantRequest requestBody) {
+        if (requestBody == null) {
             throw new IllegalArgumentException("Request cannot be null");
         }
 
-        Tenant tenant = tenantMapper.toEntity(request);
+        Tenant tenant = tenantMapper.toEntity(requestBody);
 
         if (tenantRepository.existsByEmail(tenant.getEmail())) {
             throw new IllegalArgumentException("Email already in use");
