@@ -6,8 +6,6 @@ import com.gabrielwbenattidev.carwashx.common.util.StringUtils;
 import com.gabrielwbenattidev.carwashx.modules.tenant.domain.Tenant;
 import com.gabrielwbenattidev.carwashx.modules.tenant.dto.request.CreateTenantRequest;
 import com.gabrielwbenattidev.carwashx.modules.tenant.dto.response.TenantIdResponse;
-import com.gabrielwbenattidev.carwashx.modules.user.domain.User;
-import com.gabrielwbenattidev.carwashx.modules.user.domain.enums.UserRole;
 
 @Component
 public class TenantMapper {
@@ -27,23 +25,6 @@ public class TenantMapper {
         tenant.setPhone(request.getTenantPhone());
 
         return tenant;
-    }
-
-    public User toAdminUserEntity(CreateTenantRequest request, Tenant tenant) {
-        if (request == null || tenant == null) {
-            return null;
-        }
-
-        User user = new User();
-        user.setUsername(request.getUsername());
-        user.setEmail(request.getUserEmail());
-        user.setPasswordHash(request.getPassword());
-        user.setEmail(request.getUserEmail());
-        user.setFullName(request.getFullName());
-        user.setRole(UserRole.ADMIN);
-        user.setTenant(tenant);
-
-        return user;
     }
 
     public TenantIdResponse toIdResponse(Tenant tenant) {
