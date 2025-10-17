@@ -25,7 +25,8 @@ public class TenantController {
         try {
             TenantIdResponse tenantIdResponse = tenantService.registerTenantWithAdmin(requestBody);
             return ResponseEntity.status(HttpStatus.CREATED).body(tenantIdResponse);
-        } catch (IllegalAccessError e) {
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return ResponseEntity.badRequest().build();
         }
     }
