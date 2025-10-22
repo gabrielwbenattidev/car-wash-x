@@ -1,15 +1,24 @@
 package com.gabrielwbenattidev.carwashx.modules.tenant.domain;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.gabrielwbenattidev.carwashx.modules.catalog.domain.CatalogItem;
+import com.gabrielwbenattidev.carwashx.modules.customer.domain.Customer;
+import com.gabrielwbenattidev.carwashx.modules.user.domain.User;
+import com.gabrielwbenattidev.carwashx.modules.vehicle.domain.Vehicle;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -47,5 +56,18 @@ public class Tenant {
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = true;
+
+    // relationships
+    @OneToMany(mappedBy = "tenant", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<User> users;
+
+    @OneToMany(mappedBy = "tenant", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<CatalogItem> catalogItems;
+
+    @OneToMany(mappedBy = "tenant", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Customer> customers;
+
+    @OneToMany(mappedBy = "tenant", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Vehicle> vehicles;
 
 }
